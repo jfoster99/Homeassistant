@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: homeassistant
+spec:
+  source:
+    helm:
+      values: |
+        ingress:
+          main:
+            hosts:
+              - host: homeassistant.yourdomain.com  # Replace with your actual domain
+                paths:
+                  - path: /
+                    pathType: Prefix
+            tls:
+              - hosts:
+                  - homeassistant.yourdomain.com  # Replace with your actual domain
+                secretName: homeassistant-tls
+        
+        persistence:
+          config:
+            storageClass: "prod-storage"  # Replace with your production storage class
+            size: 20Gi  # Increased size for production
+        
+        resources:
+          requests:
+            cpu: 1000m
+            memory: 1Gi
+          limits:
+            cpu: 2000m
+            memory: 2Gi

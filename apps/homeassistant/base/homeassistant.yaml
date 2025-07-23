@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://pajikos.github.io/home-assistant-helm-chart/
+    repoURL: https://github.com/pajikos/home-assistant-helm-chart
     targetRevision: 13.4.0
     chart: home-assistant
     helm:
